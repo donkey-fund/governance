@@ -94,8 +94,7 @@ contract VDONStakingInterface is VDONStakingStorage {
         uint interestLimitAmountOfDON_,
         uint interestRateOfDON_,
         uint interestLimitAmountOfecoCNG_,
-        uint interestRateOfecoCNG_
-    ) external returns (ProductInfo memory);
+        uint interestRateOfecoCNG_) external returns (ProductInfo memory);
 
     function updateProductInfo(
         bool isActivate_,
@@ -105,8 +104,7 @@ contract VDONStakingInterface is VDONStakingStorage {
         uint newInterestLimitAmountOfDON,
         uint newInterestRateOfDON,
         uint newInterestLimitAmountOfecoCNG,
-        uint newInterestRateOfecoCNG
-    ) external returns (ProductInfo memory);
+        uint newInterestRateOfecoCNG) external returns (ProductInfo memory);
 
     function enteredProductOf(address account) external view returns (ProductView[] memory);
 }
