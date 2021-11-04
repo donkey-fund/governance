@@ -66,6 +66,7 @@ contract VDONNonInterestStakingInterface is VDONNonInterestStakingStorage {
     function redeem(uint redeemProductId) external;
 
     function createProductInfo(
+        bool isActivate_,
         uint lockupTerm_,
         uint VDONExchangeRate_
     ) external returns (ProductInfo memory);

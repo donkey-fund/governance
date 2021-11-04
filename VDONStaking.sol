@@ -152,6 +152,7 @@ contract VDONStaking is Initializable, VDONStakingInterface, Exponential {
     }
 
     function createProductInfo(
+        bool isActivate_,
         uint lockupTerm_,
         uint VDONExchangeRate_,
         uint interestLimitAmountOfDON_,
@@ -176,7 +177,7 @@ contract VDONStaking is Initializable, VDONStakingInterface, Exponential {
             paidInterestAmount: 0
         });
 
-        productInfo.isActivate = true;
+        productInfo.isActivate = isActivate_; 
 
         getProductInfoById[freshProductInfoId] = productInfo;
         freshProductInfoId += 1;

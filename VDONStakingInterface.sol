@@ -88,6 +88,7 @@ contract VDONStakingInterface is VDONStakingStorage {
     function currentUsedRateOfInterestLimit(uint productInfoId) external view returns (uint);
 
     function createProductInfo(
+        bool isActivate_,
         uint lockupTerm_,
         uint VDONExchangeRate_,
         uint interestLimitAmountOfDON_,

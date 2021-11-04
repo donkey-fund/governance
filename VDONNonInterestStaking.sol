@@ -96,6 +96,7 @@ contract VDONNonInterestStaking is Initializable, VDONNonInterestStakingInterfac
     }
 
     function createProductInfo(
+        bool isActivate_,
         uint lockupTerm_,
         uint VDONExchangeRate_
     ) external returns (ProductInfo memory) {
@@ -104,7 +105,7 @@ contract VDONNonInterestStaking is Initializable, VDONNonInterestStakingInterfac
         productInfo.lockupTerm = lockupTerm_;
         productInfo.VDONExchangeRate = VDONExchangeRate_;
 
-        productInfo.isActivate = true;
+        productInfo.isActivate = isActivate_;
 
         getProductInfoById[freshProductInfoId] = productInfo;
         freshProductInfoId += 1;
