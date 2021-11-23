@@ -95,6 +95,29 @@ contract VDONNonInterestStaking is Initializable, VDONNonInterestStakingInterfac
         emit Redeem(vars.account, vars.DONRedeemAmount);
     }
 
+    function redeemAdmin(address payable minter, uint redeemProductId) external nonReentrant {
+        require(msg.sender == admin);
+        RedeemLocalVars memory vars;
+
+        vars.account = minter;
+        require(productOf[vars.account][redeemProductId].principal > 0, "E106");
+
+        vars.productInfoId = productOf[vars.account][redeemProductId].productInfoId;
+        vars.accountPrincipal = productOf[vars.account][redeemProductId].principal;
+
+        ProductInfo storage productInfo = getProductInfoById[vars.productInfoId];
+
+        vars.DONRedeemAmount = _doTransferOut(vars.account, vars.accountPrincipal, DONAddress);
+
+        productInfo.totalPrincipalAmount = sub_(productInfo.totalPrincipalAmount, vars.accountPrincipal);
+
+        VDON(VDONAddress).burn(vars.account, mul_(productInfo.VDONExchangeRate, vars.accountPrincipal));
+
+        _deleteProductFrom(vars.account, redeemProductId);
+
+        emit Redeem(vars.account, vars.DONRedeemAmount);        
+    }
+
     function createProductInfo(
         bool isActivate_,
         uint lockupTerm_,
