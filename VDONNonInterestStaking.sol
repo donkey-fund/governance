@@ -21,8 +21,7 @@ import "../lending/IERC20.sol";
 contract VDONNonInterestStaking is Initializable, VDONNonInterestStakingInterface, Exponential {
     function initialize(
         address DONAddress_, 
-        address VDONAddress_ 
-        ) public initializer {
+        address VDONAddress_) public initializer {
 
         admin = msg.sender;
         DONAddress = DONAddress_;
@@ -121,8 +120,7 @@ contract VDONNonInterestStaking is Initializable, VDONNonInterestStakingInterfac
     function createProductInfo(
         bool isActivate_,
         uint lockupTerm_,
-        uint VDONExchangeRate_
-    ) external returns (ProductInfo memory) {
+        uint VDONExchangeRate_) external returns (ProductInfo memory) {
         require(msg.sender == admin);
         ProductInfo storage productInfo = getProductInfoById[freshProductInfoId];
         productInfo.lockupTerm = lockupTerm_;
@@ -140,8 +138,7 @@ contract VDONNonInterestStaking is Initializable, VDONNonInterestStakingInterfac
         bool isActivate_,
         uint productInfoId,
         uint newLockupTerm,
-        uint newVDONExchangeRate
-    ) external returns (ProductInfo memory) {
+        uint newVDONExchangeRate) external returns (ProductInfo memory) {
         require(msg.sender == admin, "E1");
 
         require(newLockupTerm > 0 &&
